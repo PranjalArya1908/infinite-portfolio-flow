@@ -6,6 +6,7 @@ import SkillsBanner from '../components/SkillsBanner';
 import Projects from '../components/Projects';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
+import Robot3D from '../components/Robot3D';
 
 const Index = () => {
   const [darkMode, setDarkMode] = useState(true);
@@ -45,6 +46,7 @@ const Index = () => {
       <Projects />
       <Contact />
       <Footer />
+      <Robot3D />
     </div>
   );
 };

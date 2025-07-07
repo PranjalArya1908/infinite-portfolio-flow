@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useParallaxTransform } from '../hooks/useParallax';
 
 const Projects = () => {
   const projects = [
@@ -37,10 +38,26 @@ const Projects = () => {
     }
   ];
 
+  const headerParallax = useParallaxTransform(-0.2);
+  const projectsParallax = useParallaxTransform(0.1);
+
   return (
-    <section id="projects" className="py-20 bg-background">
-      <div className="container mx-auto px-6">
-        <div className="bg-white/20 dark:bg-black/20 backdrop-blur-lg rounded-3xl p-8 mb-16 border border-white/30 dark:border-white/10 shadow-xl">
+    <section id="projects" className="py-20 bg-background relative overflow-hidden">
+      {/* Parallax Background Elements */}
+      <div 
+        className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-full blur-3xl"
+        style={headerParallax}
+      ></div>
+      <div 
+        className="absolute bottom-20 right-20 w-48 h-48 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-full blur-3xl"
+        style={{ ...headerParallax, transform: `${headerParallax.transform} translateX(40px)` }}
+      ></div>
+      
+      <div className="container mx-auto px-6 relative z-10">
+        <div 
+          className="bg-white/20 dark:bg-black/20 backdrop-blur-lg rounded-3xl p-8 mb-16 border border-white/30 dark:border-white/10 shadow-xl transform hover:scale-105 transition-all duration-500"
+          style={headerParallax}
+        >
           <h2 className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
             Featured Projects
           </h2>
@@ -49,17 +66,20 @@ const Projects = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8" style={projectsParallax}>
           {projects.map((project, index) => (
             <div
               key={index}
-              className="group bg-white/20 dark:bg-black/20 backdrop-blur-lg rounded-3xl overflow-hidden border border-white/30 dark:border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:bg-white/30 dark:hover:bg-black/30"
+              className="group bg-white/20 dark:bg-black/20 backdrop-blur-lg rounded-3xl overflow-hidden border border-white/30 dark:border-white/10 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 hover:bg-white/30 dark:hover:bg-black/30 hover:scale-105"
+              style={{
+                animationDelay: `${index * 0.2}s`,
+              }}
             >
               <div className="relative overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                  className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
@@ -72,7 +92,7 @@ const Projects = () => {
                   {project.tech.map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-3 py-1 bg-white/30 dark:bg-white/20 backdrop-blur-sm border border-white/40 dark:border-white/30 text-blue-800 dark:text-blue-200 rounded-full text-sm"
+                      className="px-3 py-1 bg-white/30 dark:bg-white/20 backdrop-blur-sm border border-white/40 dark:border-white/30 text-blue-800 dark:text-blue-200 rounded-full text-sm hover:scale-110 transition-transform duration-200"
                     >
                       {tech}
                     </span>
@@ -82,13 +102,13 @@ const Projects = () => {
                 <div className="flex gap-4">
                   <a
                     href={project.demo}
-                    className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-300 backdrop-blur-sm"
+                    className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-300 backdrop-blur-sm transform hover:scale-105"
                   >
                     Live Demo
                   </a>
                   <a
                     href={project.code}
-                    className="px-4 py-2 bg-white/30 dark:bg-white/20 backdrop-blur-sm border border-white/40 dark:border-white/30 rounded-xl hover:bg-white/40 dark:hover:bg-white/30 transition-all duration-300 text-gray-900 dark:text-white"
+                    className="px-4 py-2 bg-white/30 dark:bg-white/20 backdrop-blur-sm border border-white/40 dark:border-white/30 rounded-xl hover:bg-white/40 dark:hover:bg-white/30 transition-all duration-300 text-gray-900 dark:text-white transform hover:scale-105"
                   >
                     View Code
                   </a>
