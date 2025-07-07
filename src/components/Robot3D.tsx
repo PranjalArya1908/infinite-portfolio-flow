@@ -22,16 +22,16 @@ const Robot = () => {
 
   useFrame(() => {
     if (robotRef.current) {
-      // Smooth following animation
+      // More responsive cursor following
       robotRef.current.rotation.y = THREE.MathUtils.lerp(
         robotRef.current.rotation.y,
-        mousePosition.current.x * 0.3,
-        0.05
+        mousePosition.current.x * 0.5,
+        0.1
       );
       robotRef.current.rotation.x = THREE.MathUtils.lerp(
         robotRef.current.rotation.x,
-        mousePosition.current.y * 0.2,
-        0.05
+        mousePosition.current.y * 0.3,
+        0.1
       );
       
       // Floating animation

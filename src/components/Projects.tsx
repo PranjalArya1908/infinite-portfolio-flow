@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { useParallaxTransform } from '../hooks/useParallax';
 
 const Projects = () => {
   const projects = [
@@ -38,26 +37,14 @@ const Projects = () => {
     }
   ];
 
-  const headerParallax = useParallaxTransform(-0.2);
-  const projectsParallax = useParallaxTransform(0.1);
-
   return (
     <section id="projects" className="py-20 bg-background relative overflow-hidden">
-      {/* Parallax Background Elements */}
-      <div 
-        className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-full blur-3xl"
-        style={headerParallax}
-      ></div>
-      <div 
-        className="absolute bottom-20 right-20 w-48 h-48 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-full blur-3xl"
-        style={{ ...headerParallax, transform: `${headerParallax.transform} translateX(40px)` }}
-      ></div>
+      {/* Static Background Elements */}
+      <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-20 w-48 h-48 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-full blur-3xl"></div>
       
       <div className="container mx-auto px-6 relative z-10">
-        <div 
-          className="bg-white/20 dark:bg-black/20 backdrop-blur-lg rounded-3xl p-8 mb-16 border border-white/30 dark:border-white/10 shadow-xl transform hover:scale-105 transition-all duration-500"
-          style={headerParallax}
-        >
+        <div className="bg-white/20 dark:bg-black/20 backdrop-blur-lg rounded-3xl p-8 mb-16 border border-white/30 dark:border-white/10 shadow-xl transform hover:scale-105 transition-all duration-500">
           <h2 className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
             Featured Projects
           </h2>
@@ -66,7 +53,7 @@ const Projects = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8" style={projectsParallax}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <div
               key={index}

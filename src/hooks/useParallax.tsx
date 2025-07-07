@@ -14,10 +14,9 @@ export const useParallax = () => {
   return scrollY;
 };
 
+// Return empty transform since we're removing parallax
 export const useParallaxTransform = (speed: number = 0.5) => {
-  const scrollY = useParallax();
-  
   return {
-    transform: `translateY(${scrollY * speed}px)`,
+    transform: 'translateY(0px)',
   };
 };
